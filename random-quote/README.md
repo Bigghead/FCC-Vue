@@ -1,6 +1,8 @@
 # random-quote
+# Stuck on finding a good free quote api. Will come back to this at a later date
 
 > A Vue.js project
+
 
 ## Build Setup
 

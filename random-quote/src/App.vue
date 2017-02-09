@@ -32,10 +32,12 @@ export default {
   methods:{
     getQuote: function(){
       var vm = this;
-      axios.get('http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1')
+      axios.get('http://quotesondesign.com/wp-json/posts')
         .then(function(data){
           console.log(data);
-          vm.quote = data.data[0];
+          // var quote = data.data[0].content;
+          //
+          // vm.quote = data.data[0];
         });
     }
   }
