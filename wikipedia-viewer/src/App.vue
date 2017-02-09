@@ -4,7 +4,7 @@
 
 <script type="text/javascript">
 
-  import Keys from '../../apiKey.js';
+  import Keys from '../apiKey.js';
   export default{
     data: function(){
       return {
@@ -20,14 +20,15 @@
         axios.get('http://ip-api.com/json')
           .then(function(geolocation){
             var ipData = geolocation.data;
-            this.lat = ipData.lat;
-            this.long = ipData.long;
+            vm.lat = ipData.lat;
+            vm.long = ipData.long;
           });
       },
 
       getWeatherData: function(lat, long){
         var vm = this;
-        axios.get(`https://api.darksky.net/forecast/${Keys.darkSky}/${vm.lat},${vm.long}`)
+        console.log(lat);
+        axios.get('https://api.darksky.net/forecast/'+ Keys.darkSky + '/' + lat +',' + long + '')
           .then(function(weatherData){
             console.log(weatherData);
           });
@@ -36,7 +37,7 @@
     mounted: function(){
       var vm = this;
       vm.getIP();
-      vm.getWeatherData();
+      vm.getWeatherData(vm.lat, vm.long);
     }
   }
 
