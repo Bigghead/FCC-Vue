@@ -1,5 +1,7 @@
 <template id="">
-
+  <div class="">
+    <h1>{{ long }}</h1>
+  </div>
 </template>
 
 <script type="text/javascript">
@@ -9,7 +11,8 @@
     data: function(){
       return {
         lat: '',
-        long: ''
+        long: '',
+        done: false
 
       }
     },
@@ -21,14 +24,14 @@
           .then(function(geolocation){
             var ipData = geolocation.data;
             vm.lat = ipData.lat;
-            vm.long = ipData.long;
+            vm.long = ipData.lon;
+            return lat;
           });
       },
 
       getWeatherData: function(lat, long){
         var vm = this;
-        console.log(lat);
-        axios.get('https://api.darksky.net/forecast/'+ Keys.darkSky + '/' + lat +',' + long + '')
+        axios.get('https://api.darksky.net/forecast/'+ Keys.darkSky + '/' + lat + ',' + long)
           .then(function(weatherData){
             console.log(weatherData);
           });
@@ -36,8 +39,7 @@
     },
     mounted: function(){
       var vm = this;
-      vm.getIP();
-      vm.getWeatherData(vm.lat, vm.long);
+
     }
   }
 
