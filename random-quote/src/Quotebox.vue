@@ -7,7 +7,9 @@
       <h4 class='item'>- {{ author }}</h4>
     </div>
     <div class="">
-      <button type="button" class='btn btn-primary'>New Quote</button>
+      <button type="button" class='btn btn-primary'
+        v-on:click="getQuote"
+      >New Quote</button>
       <button type="button" class='btn btn-info'>Random Quote</button>
     </div>
     </div>
@@ -18,7 +20,7 @@
 <script type="text/javascript">
 
     export default{
-      props: ['quote', 'author']
+      props: ['quote', 'author', 'getQuote']
     }
 </script>
 

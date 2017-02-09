@@ -7,6 +7,8 @@
     <quote-box
     v-bind:quote="quote"
     v-bind:author="author"
+    v-bind:getQuote="getQuote"
+
     ></quote-box>
   </div>
 </template>
@@ -25,6 +27,17 @@ export default {
 
   components:{
     'quote-box': Quotebox
+  },
+
+  methods:{
+    getQuote: function(){
+      var vm = this;
+      axios.get('http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1')
+        .then(function(data){
+          console.log(data);
+          vm.quote = data.data[0];
+        });
+    }
   }
 }
 </script>
