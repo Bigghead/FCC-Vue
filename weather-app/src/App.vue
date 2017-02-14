@@ -1,6 +1,6 @@
 <template id="">
   <div class="">
-    <h1>{{ long }}</h1>
+    <h1>{{ weatherData }}</h1>
   </div>
 </template>
 
@@ -49,6 +49,15 @@
         vm.getIP()
             .then(function(){
               return vm.getWeatherData(vm.lat, vm.long);
+            }).then(function(){
+              return new Promise(function(resolve, reject){
+                setTimeout(function(){
+                  console.log('timeout');
+                  resolve();
+                }, 4000);
+              });
+            }).then(function(){
+              console.log('all calls done');
             });
       }
   }
