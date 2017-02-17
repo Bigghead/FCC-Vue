@@ -1,10 +1,10 @@
 <template id="">
   <div class="">
-    <div class="container text-center">
+    <div class="container text-center" v-if='weatherData !== ""'>
       <h1>{{ city }}, <strong>{{ region }}</strong></h1>
       <h1 style='text-decoration: underline'>{{ todayTemp }}° F</h1>
-        <i class='weatherIcon wi wi-night-partly-cloudy'></i>
-        <h3 v-if='weatherData !== ""'>{{ weatherData.currently.summary }}</h3>
+        <i class='weatherIcon' v-bind:class='todayWeather'></i>
+        <h3>{{ weatherData.currently.summary }}</h3>
         <hr>
 
         <h4>3 Day Forecast:</h4>
@@ -35,7 +35,8 @@ export default{
       region: '',
       weatherData: '',
       today: '',
-      todayTemp : ''
+      todayTemp : '',
+      todayWeather : 'wi wi-'
     }
   },
 
@@ -66,6 +67,7 @@ export default{
           vm.weatherData = data;
           vm.today = vm.timeConverter(data.currently.time);
           vm.todayTemp = Math.floor(data.currently.temperature);
+          vm.todayWeather += vm.getWeatherIcon(data.currently.icon);
           console.log(data.currently);
           resolve();
         });
@@ -75,14 +77,16 @@ export default{
       var a = new Date(UNIX_timestamp * 1000);
       var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
       var days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-      var year = a.getFullYear();
       var month = months[a.getMonth()];
       var date = a.getDate();
-      var hour = a.getHours();
-      var min = a.getMinutes();
-      var sec = a.getSeconds();
-      var time = month + ' ' + date + ' ' + year ;// ' ' + hour + ':' + min + ':' + sec ;
+      var day = days[a.getDay()];
+      var time = day+ ', ' + month + ' ' + date   ;// ' ' + hour + ':' + min + ':' + sec ;
       return time;
+    },
+    getWeatherIcon: function(string){
+      var newString = string.split('-');
+      newString.unshift(newString.pop());
+      return newString.join('-');
     }
   },
   mounted: function(){
