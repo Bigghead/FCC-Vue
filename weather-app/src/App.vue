@@ -76,10 +76,10 @@ export default{
     timeConverter: function(UNIX_timestamp){
       var a = new Date(UNIX_timestamp * 1000);
       var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-      var days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+      var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
       var month = months[a.getMonth()];
       var date = a.getDate();
-      var day = days[a.getDay()];
+      var day = days[a.getDay()] ;
       var time = day+ ', ' + month + ' ' + date   ;// ' ' + hour + ':' + min + ':' + sec ;
       return time;
     },
