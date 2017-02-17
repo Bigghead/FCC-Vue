@@ -13,10 +13,10 @@
             <h1>{{ timeConverter(weatherData.daily.data[1].time)}}</h1>
           </div>
           <div class="col-xs-4">
-            <h1>hello</h1>
+            <h1>{{ timeConverter(weatherData.daily.data[2].time)}}</h1>
           </div>
           <div class="col-xs-4">
-            <h1>hello</h1>
+            <h1>{{ timeConverter(weatherData.daily.data[3].time)}}</h1>
           </div>
         </div>
     </div>
