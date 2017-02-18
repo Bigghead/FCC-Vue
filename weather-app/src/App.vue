@@ -9,12 +9,12 @@
 
         <h4>3 Day Forecast:</h4>
         <div class="row" v-if='weatherData !== ""' >
-          <div class="col col-xs-4 " v-for="item in nextDayData">
-            <h3>{{ timeConverter(item.time)}}</h3>
-            <p>
-              {{ item.summary}}
+          <div class="col col-sm-4 col-xs-12 " v-for="item in nextDayData">
+            <h3>{{ timeConverter(item[0].time)}}</h3>
+            <i  v-bind:class='item[1]'></i>
+            <p class='summary'>
+              {{ item[0].summary}}
             </p>
-            <i class='weatherIcon3 wi wi-rain'></i>
           </div>
         </div>
     </div>
@@ -60,6 +60,7 @@ export default{
       var vm = this;
 
       return new Promise(function(resolve, reject){
+        vm.nextDayData = [];
         return axios.get('https://api.darksky.net/forecast/'+ Keys.darkSky + '/' + lat + ',' + long)
         .then(function(weatherData){
           var data = JSON.parse(weatherData.request.responseText);
@@ -68,13 +69,13 @@ export default{
           vm.todayTemp = Math.floor(data.currently.temperature);
           vm.todayWeather += vm.getWeatherIcon(data.currently.icon);
           for(var i = 1; i <= 3; i ++){
-            vm.nextDayData.push(data.daily.data[i]);
+            vm.nextDayData.push([data.daily.data[i], 'weatherIcon3 wi wi-' + data.daily.data[i].icon] );
           }
-          console.log(vm.nextDayData);
           resolve();
         });
       });
     },
+
     timeConverter: function(UNIX_timestamp){
       var a = new Date(UNIX_timestamp * 1000);
       var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -85,12 +86,14 @@ export default{
       var time = day+ ', ' + month + ' ' + date   ;// ' ' + hour + ':' + min + ':' + sec ;
       return time;
     },
+
     getWeatherIcon: function(string){
       var newString = string.split('-');
       newString.unshift(newString.pop());
       return newString.join('-');
     }
   },
+  
   mounted: function(){
     var vm = this;
     vm.getIP()
@@ -118,7 +121,12 @@ export default{
     font-size: 5em;
   }
 
+  .summary{
+    margin-top: 30px;
+  }
+
   hr{
     color: white;
+    margin-top: 50px;
   }
 </style>
