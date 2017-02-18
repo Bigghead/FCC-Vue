@@ -2,8 +2,11 @@
   <div class="">
     <div class="container text-center" v-if='weatherData !== ""'>
       <h1>{{ city }}, <strong>{{ region }}</strong></h1>
+      <button class='btn btn-info'
+        v-on:click="toggleTemp"
+      >Fahrenheit/Celcius</button>
       <h1 style='text-decoration: underline'
-            v-on:click="toggleTemp">{{ todayTemp }}° {{currentDegree}}
+            >{{ todayTemp }}° {{currentDegree}}
       </h1>
         <i class='weatherIcon' v-bind:class='todayWeather'></i>
         <h3>{{ weatherData.currently.summary }}</h3>
@@ -99,10 +102,10 @@ export default{
     toggleTemp: function(e){
       console.log(this.currentDegree);
       if(this.currentDegree === 'F'){
-        this.todayTemp = Math.floor((this.todayTemp-32) * (5/9));
+        this.todayTemp = Math.round((this.todayTemp-32) * (5/9));
         this.currentDegree = 'C';
       } else if(this.currentDegree === 'C'){
-        this.todayTemp = Math.floor((this.todayTemp * 1.8 + 32));
+        this.todayTemp = Math.round((this.todayTemp * 1.8 + 32));
         this.currentDegree = 'F';
       }
     }
