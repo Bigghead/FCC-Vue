@@ -8,15 +8,13 @@
         <hr>
 
         <h4>3 Day Forecast:</h4>
-        <div class="row" v-if='weatherData !== ""'>
-          <div class="col-xs-4">
-            <h1>{{ timeConverter(weatherData.daily.data[1].time)}}</h1>
-          </div>
-          <div class="col-xs-4">
-            <h1>{{ timeConverter(weatherData.daily.data[2].time)}}</h1>
-          </div>
-          <div class="col-xs-4">
-            <h1>{{ timeConverter(weatherData.daily.data[3].time)}}</h1>
+        <div class="row" v-if='weatherData !== ""' >
+          <div class="col col-xs-4 " v-for="item in nextDayData">
+            <h3>{{ timeConverter(item.time)}}</h3>
+            <p>
+              {{ item.summary}}
+            </p>
+            <i class='weatherIcon3 wi wi-rain'></i>
           </div>
         </div>
     </div>
@@ -36,7 +34,8 @@ export default{
       weatherData: '',
       today: '',
       todayTemp : '',
-      todayWeather : 'wi wi-'
+      todayWeather : 'wi wi-',
+      nextDayData: []
     }
   },
 
@@ -68,7 +67,10 @@ export default{
           vm.today = vm.timeConverter(data.currently.time);
           vm.todayTemp = Math.floor(data.currently.temperature);
           vm.todayWeather += vm.getWeatherIcon(data.currently.icon);
-          console.log(data.currently);
+          for(var i = 1; i <= 3; i ++){
+            vm.nextDayData.push(data.daily.data[i]);
+          }
+          console.log(vm.nextDayData);
           resolve();
         });
       });
@@ -110,6 +112,10 @@ export default{
   }
   .weatherIcon{
     font-size: 10em;
+  }
+
+  .weatherIcon3{
+    font-size: 5em;
   }
 
   hr{
