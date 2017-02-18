@@ -2,7 +2,9 @@
   <div class="">
     <div class="container text-center" v-if='weatherData !== ""'>
       <h1>{{ city }}, <strong>{{ region }}</strong></h1>
-      <h1 style='text-decoration: underline'>{{ todayTemp }}° F</h1>
+      <h1 style='text-decoration: underline'
+            v-on:click="toggleTemp">{{ todayTemp }}° {{currentDegree}}
+      </h1>
         <i class='weatherIcon' v-bind:class='todayWeather'></i>
         <h3>{{ weatherData.currently.summary }}</h3>
         <hr>
@@ -35,7 +37,8 @@ export default{
       today: '',
       todayTemp : '',
       todayWeather : 'wi wi-',
-      nextDayData: []
+      nextDayData: [],
+      currentDegree: 'F'
     }
   },
 
@@ -91,9 +94,20 @@ export default{
       var newString = string.split('-');
       newString.unshift(newString.pop());
       return newString.join('-');
+    },
+
+    toggleTemp: function(e){
+      console.log(this.currentDegree);
+      if(this.currentDegree === 'F'){
+        this.todayTemp = Math.floor((this.todayTemp-32) * (5/9));
+        this.currentDegree = 'C';
+      } else if(this.currentDegree === 'C'){
+        this.todayTemp = Math.floor((this.todayTemp * 1.8 + 32));
+        this.currentDegree = 'F';
+      }
     }
   },
-  
+
   mounted: function(){
     var vm = this;
     vm.getIP()
@@ -112,6 +126,10 @@ export default{
   body{
     background-color: rgb(48, 63, 159);
     color: white;
+  }
+
+  button{
+    margin-top: 5%;
   }
   .weatherIcon{
     font-size: 10em;
