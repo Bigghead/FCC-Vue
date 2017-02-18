@@ -5,7 +5,7 @@
       <button class='btn btn-info'
         v-on:click="toggleTemp"
       >Fahrenheit/Celcius</button>
-      <h1 style='text-decoration: underline'
+      <h1 class='mainTemp'
             >{{ todayTemp }}° {{currentDegree}}
       </h1>
         <i class='weatherIcon' v-bind:class='todayWeather'></i>
@@ -129,10 +129,16 @@ export default{
   body{
     background-color: rgb(48, 63, 159);
     color: white;
+    font-family: 'Montserrat';
   }
 
   button{
     margin-top: 5%;
+  }
+
+  .mainTemp{
+    text-decoration: underline;
+    font-size: 50px;
   }
   .weatherIcon{
     font-size: 10em;
