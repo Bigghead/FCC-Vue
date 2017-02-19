@@ -27,7 +27,13 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        exclude: /node_modules/
+        exclude: /node_modules/,
+        query: {
+          presets: ['es2015']
+        },
+        include: [
+          path.resolve(__dirname, '../'),
+        ]
       },
       {
         test: /\.(png|jpg|gif|svg)$/,
@@ -39,6 +45,7 @@ module.exports = {
     ]
   },
   resolve: {
+    extensions:['.js', '.vue'],
     alias: {
       'vue$': 'vue/dist/vue.common.js'
     }

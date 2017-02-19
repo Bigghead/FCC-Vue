@@ -1,5 +1,5 @@
 <template id="">
-  <div class="">
+  <div class="bar">
     <div class="container text-center" v-if='weatherData !== ""'>
       <h1>{{ city }}, <strong>{{ region }}</strong></h1>
       <button class='btn btn-info'
