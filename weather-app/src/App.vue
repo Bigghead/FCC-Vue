@@ -27,7 +27,6 @@
 </template>
 
 <script type="text/javascript">
-
 import Keys from '../apiKey.js';
 export default{
   data: function(){
@@ -44,11 +43,9 @@ export default{
       currentDegree: 'F'
     }
   },
-
   methods:{
     getIP : function(){
       var vm = this;
-
       return new Promise(function(resolve, reject){
         return axios.get('http://ip-api.com/json')
         .then(function(geolocation){
@@ -61,10 +58,8 @@ export default{
         });
       });
     },
-
     getWeatherData: function(lat, long){
       var vm = this;
-
       return new Promise(function(resolve, reject){
         vm.nextDayData = [];
         return axios.get('https://api.darksky.net/forecast/'+ Keys.darkSky + '/' + lat + ',' + long)
@@ -81,7 +76,6 @@ export default{
         });
       });
     },
-
     timeConverter: function(UNIX_timestamp){
       var a = new Date(UNIX_timestamp * 1000);
       var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -92,13 +86,11 @@ export default{
       var time = day+ ', ' + month + ' ' + date   ;// ' ' + hour + ':' + min + ':' + sec ;
       return time;
     },
-
     getWeatherIcon: function(string){
       var newString = string.split('-');
       newString.unshift(newString.pop());
       return newString.join('-');
     },
-
     toggleTemp: function(e){
       console.log(this.currentDegree);
       if(this.currentDegree === 'F'){
@@ -110,7 +102,6 @@ export default{
       }
     }
   },
-
   mounted: function(){
     var vm = this;
     vm.getIP()
@@ -121,21 +112,17 @@ export default{
     });;
   }
 }
-
 </script>
 
 <style media="screen">
-
   body{
     background-color: rgb(48, 63, 159);
     color: white;
     font-family: 'Montserrat';
   }
-
   button{
     margin-top: 5%;
   }
-
   .mainTemp{
     text-decoration: underline;
     font-size: 50px;
@@ -143,15 +130,12 @@ export default{
   .weatherIcon{
     font-size: 10em;
   }
-
   .weatherIcon3{
     font-size: 5em;
   }
-
   .summary{
     margin-top: 30px;
   }
-
   hr{
     color: white;
     margin-top: 50px;
