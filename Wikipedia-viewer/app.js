@@ -8,6 +8,7 @@ var app = new Vue({
   methods: {
     submit: function (e) {
       var vm = this;
+      vm.searchData = [];
       axios.get("http://en.wikipedia.org/w/api.php?action=opensearch&search=" + this.searchTerm + "&format=json")
         .then(function (res) {
           console.log(res.data);
