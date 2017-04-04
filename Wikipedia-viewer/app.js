@@ -2,15 +2,22 @@ var app = new Vue({
   el: '#root',
   data: {
     title: 'Wikipedia Viewer',
-    searchTerm: ''
+    searchTerm: '',
+    searchData: []
   },
-  methods:{
-    submit: function(e){
-      axios.get("http://en.wikipedia.org/w/api.php?action=opensearch&search=Nike&format=json")
-            .then(function(res){
-              console.log(res);
-            });
-            this.searchTerm = '';
+  methods: {
+    submit: function (e) {
+      var vm = this;
+      axios.get("http://en.wikipedia.org/w/api.php?action=opensearch&search=" + this.searchTerm + "&format=json")
+        .then(function (res) {
+          console.log(res.data);
+          for( let i = 0 ; i < 10; i ++){
+            vm.searchData.push([res.data[1][i], res.data[2][i], res.data[3][i]]);
+          }
+         vm.searchTerm = '';
+          console.log(vm.searchData);
+        });
     }
+    
   }
 });

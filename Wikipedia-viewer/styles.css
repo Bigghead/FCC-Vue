@@ -2,9 +2,10 @@ body{
   background: #B993D6; /* fallback for old browsers */
   background: -webkit-linear-gradient(to left, #B993D6 , #8CA6DB); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to left, #B993D6 , #8CA6DB); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  font-family: Lemon;
 }
 
-.row{
+.search-row{
   margin-left:20%;
 }
 /* label color */
@@ -35,4 +36,9 @@ body{
  /* icon prefix focus color */
  .input-field .prefix.active {
    color: #000;
+ }
+
+
+ .search-item{
+   margin: 0 !important;
  }
