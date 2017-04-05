@@ -1,0 +1,32 @@
+body {
+    background-color: rgb(48, 63, 159);
+    color: white;
+    font-family: 'Montserrat';
+  }
+  
+  button {
+    margin-top: 5%;
+  }
+  
+  .mainTemp {
+    text-decoration: underline;
+    margin-bottom: 5%;
+    font-size: 50px;
+  }
+  
+  .weatherIcon {
+    font-size: 10em;
+  }
+  
+  .weatherIcon3 {
+    font-size: 5em;
+  }
+  
+  .summary {
+    margin-top: 30px;
+  }
+  
+  hr {
+    color: white;
+    margin-top: 50px;
+  }

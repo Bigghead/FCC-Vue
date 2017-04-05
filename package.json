@@ -1,0 +1,19 @@
+{
+  "name": "server2",
+  "version": "1.0.0",
+  "description": "Redoing all of the FCC front end projects using Vue and flexbox (if possible) only",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bigghead/FCC-Vue.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bigghead/FCC-Vue/issues"
+  },
+  "homepage": "https://github.com/Bigghead/FCC-Vue#readme"
+}
