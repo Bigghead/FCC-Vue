@@ -5,8 +5,13 @@ body{
   font-family: Lemon;
 }
 
-.search-row{
+/*.search-row{
   margin-left:20%;
+}*/
+
+.input-field{
+  width: 70%;
+  margin: auto;
 }
 /* label color */
  .input-field label {
