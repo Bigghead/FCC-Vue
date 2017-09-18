@@ -33,7 +33,7 @@ var app = new Vue({
         var vm = this;
         return new Promise(function (resolve, reject) {
           vm.nextDayData = [];
-          return axios.get('https://api.darksky.net/forecast/fb7bfe5b5fb3a0b9f9bf5215ce4b3e6d/' + lat + ',' + long)
+          return axios.get('https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/fb7bfe5b5fb3a0b9f9bf5215ce4b3e6d/' + lat + ',' + long )
             .then(function (weatherData) {
               var data = JSON.parse(weatherData.request.responseText);
               vm.weatherData = data;
