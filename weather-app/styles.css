@@ -2,6 +2,7 @@ body {
     background-color: rgb(48, 63, 159);
     color: white;
     font-family: 'Montserrat';
+    height: 100vh;
   }
   
   button {
