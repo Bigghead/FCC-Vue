@@ -20,7 +20,7 @@
     <div class="row search-row">
       <div class="row search-row">
         <div class="input-field  ">
-          <input id="first_name" class='center-align' type="text" class="validate" v-on:keyup.enter='submit' v-model='searchTerm' placeholder="Search">
+          <input id="first_name" class='center-align' type="text" class="validate" @keyup.enter='submit' v-model='searchTerm' placeholder="Search">
           <!--<label for="first_name">Search</label>-->
           <div class="row">
             <div class="col m3 offset-m3 s12">

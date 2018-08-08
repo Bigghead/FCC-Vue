@@ -9,7 +9,7 @@ var app = new Vue({
     submit: function (e) {
       var vm = this;
       vm.searchData = [];
-      axios.get("http://en.wikipedia.org/w/api.php?action=opensearch&search=" + this.searchTerm + "&format=json&origin=*")
+      axios.get("https://cors-anywhere.herokuapp.com/http://en.wikipedia.org/w/api.php?action=opensearch&search=" + this.searchTerm + "&format=json&origin=*")
         .then(function (res) {
           console.log(res.data);
           for( let i = 0 ; i < 10; i ++){
